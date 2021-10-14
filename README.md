@@ -35,7 +35,7 @@ Join us after the talk for a chance to chat with Quinn and network with the othe
 
 # Usage
 
-CI (more on that below) checks pythons 3.6-3.10. As of this writing (10-13) I haven't checked that they all work. 3.8 or 3.9 is gonna be your safest bet.
+CI (more on that below) checks pythons 3.6-3.9. As of this writing (10-13) I haven't checked that they all work. 3.8 or 3.9 is gonna be your safest bet.
 
 ## Build env 
 ```
@@ -77,7 +77,7 @@ Read files in `test/property/`. The library is called `hypothesis`, it's importa
 As of this writing (10-12) I haven't tested `rockpaperscissors` adequately, as the astute reader may point out.
 
 ### Type hints and `pytype` 
-Python's "type system" if you can call it that occasionally identifies bugs for you, if you use it! `pytype` is the command line tool that emits warnings when you've made a misstep in logic.
+Python's "type system" if you can call it that occasionally identifies bugs for you, if you use it! `pytype` is the command line tool that emits warnings when you've made a misstep in logic.Though come to think of it I actually use `mypy` because `pytype`'s `nix` build is busted, `mypy` is similar to `pytype` but not as good in my experience.
 
 ### CI: cloud jobs that can check your code. 
 

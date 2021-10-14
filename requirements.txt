@@ -6,4 +6,4 @@ ray[rllib]==1.6
 flake8
 pytest
 hypothesis
-pytype
+mypy
