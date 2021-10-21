@@ -85,4 +85,4 @@ in `.github/workflows/` there's a file. Read it. It describes a "job" that happe
 - Roll your own single agent game with the step/reset paradigm! 
   - Augment my command line interface with your game
 - Use `from collections import namedtuple` and type aliases to make the step and reset functions more self-documenting
-- Roll your own multi-level game with the step/reset paradigm
+- Roll your own multi-agent game with the step/reset paradigm

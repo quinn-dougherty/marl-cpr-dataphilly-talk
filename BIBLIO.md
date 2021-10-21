@@ -10,3 +10,6 @@
 - [Review of Ostrom's book on my blog](https://quinnd.net/blog/tragedy)
 - [Ostrom's 8 principles for sustainability in CPRs](https://en.wikipedia.org/wiki/Common-pool_resource#Common_property_protocols)
 - [My calendly. Let's do a one-on-one if you want to follow up about anything in the talk](https://calendly.com/quinn-d/)
+- [Deepmind paper we partially replicated](https://deepmind.com/research/publications/2019/multi-agent-reinforcement-learning-model-common-pool-resource-appropriation)
+- [Podcast with one of the authors of that deepmind paper](https://technical-ai-safety.libsyn.com/4-multi-agent-reinforcement-learning-in-sequential-social-dilemmas)
+- [Podcast with an author of a paper about the broader cooperative AI space](https://axrp.net/episode/2020/12/11/episode-3-negotiable-reinforcement-learning-andrew-critch.html)
