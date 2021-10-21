@@ -3,9 +3,9 @@
 with pkgs;
 let
   pythonOnNix = import (pkgs.fetchFromGitHub {
-    owner = "kamadorueda";
-    repo = "python-on-nix";
-    rev = "50eb084be288012628a89fa9ddd0cc8a875df6e8";
+    owner = "on-nix";
+    repo = "python";
+    rev = "27684f3486de58fc928897d91520223bee17277c";
     sha256 = "1cj2r93faaff8rqsr0kp1zy11shpkb01dc3w5qb3b41b3g9k309w";
   });
   env = pythonOnNix.python39Env {

@@ -43,7 +43,7 @@ Enter my virtual/isolated world with
 $ nix-shell
 ```
 
-That's what I use for the talk. `Nix` isn't a huge deal in data science ecosystems, so you can safely ignore it (but it is a great tool). You can use any virtualization you want and `requirements.txt` should work. I think there's something broken in the `environment.yaml` so if you want to use `conda` you're on your own (do submit a pull request if you get a working `environment.yaml`, tho).
+That's what I use for the talk. `Nix` isn't a huge deal in data science ecosystems, so you can safely ignore it (but it is a great tool). You can install it [here](https://nixos.org/download.html), it's all about isolation so it nor anything you install with it will mess with your system. You can use any virtualization you want and `requirements.txt` should work. I think there's something broken in the `environment.yaml` so if you want to use `conda` you're on your own (do submit a pull request if you get a working `environment.yaml`, tho).
 
 ## Validate
 ```
@@ -74,8 +74,8 @@ Read files in `test/property/`. The library is called `hypothesis`, it's importa
 As of this writing (10-12) I haven't tested `rockpaperscissors` adequately, as the astute reader may point out.
 
 ## Type hints and `pytype` 
-Python's "type system" if you can call it that occasionally identifies bugs for you, if you use it! `pytype` is the command line tool that emits warnings when you've made a misstep in logic.Though come to think of it I actually use `mypy` because `pytype`'s `nix` build is busted, `mypy` is similar to `pytype` but not as good in my experience.
+Python's "type system" if you can call it that occasionally identifies bugs for you, if you use it! `pytype` is the command line tool that emits warnings when you've made a misstep in logic.Though come to think of it I actually use `mypy` because `pytype`'s `nix` build was busted busted, `mypy` is similar to `pytype` but not as good in my experience.
 
 ## CI: cloud jobs that can check your code. 
 
-in `.github/workflows/` there's a file. Read it. It describes a "job" that happens in the github cloud. That way every time I push to github I can check across different python versions that my code works at least well enough to pass lint, typechecking, and testing.
+in `.github/workflows/` there's a file. Read it. It describes a "job" that happens in the github cloud. That way every time I push to github I can check across different python versions that my code works at least well enough to pass lint, typechecking, and testing. Ok, the pipeline is technically failing right now and I don't feel like fixing it.
