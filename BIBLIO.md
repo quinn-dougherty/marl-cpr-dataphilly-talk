@@ -9,3 +9,4 @@
 - [ray rllib docs](https://docs.ray.io/en/latest/rllib.html)
 - [Review of Ostrom's book on my blog](https://quinnd.net/blog/tragedy)
 - [Ostrom's 8 principles for sustainability in CPRs](https://en.wikipedia.org/wiki/Common-pool_resource#Common_property_protocols)
+- [My calendly. Let's do a one-on-one if you want to follow up about anything in the talk](https://calendly.com/quinn-d/)
