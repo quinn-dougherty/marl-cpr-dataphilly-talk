@@ -79,3 +79,10 @@ Python's "type system" if you can call it that occasionally identifies bugs for 
 ## CI: cloud jobs that can check your code. 
 
 in `.github/workflows/` there's a file. Read it. It describes a "job" that happens in the github cloud. That way every time I push to github I can check across different python versions that my code works at least well enough to pass lint, typechecking, and testing. Ok, the pipeline is technically failing right now and I don't feel like fixing it. In fact, exercise for the reader!
+
+# Exercises 
+
+- Roll your own single agent game with the step/reset paradigm! 
+  - Augment my command line interface with your game
+- Use `from collections import namedtuple` and type aliases to make the step and reset functions more self-documenting
+- Roll your own multi-level game with the step/reset paradigm
