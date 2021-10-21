@@ -9,16 +9,12 @@ from hypothesis.strategies import integers
 
 def guessing_game(n: int, length: int) -> GuessingGame:
     """Constructs guessing game in *args or **kwargs form."""
-    return GuessingGame(
-        {"n": n, "length": length}
-    )
+    return GuessingGame({"n": n, "length": length})
 
 
 def rock_paper_scissors(n: int, length: int) -> RockPaperScissors:
     """Constructs rock paper scissors having destructed dict"""
-    return RockPaperScissors(
-        {"n": n, "length": length}
-    )
+    return RockPaperScissors({"n": n, "length": length})
 
 
 def gg_agent(n: int) -> int:
@@ -30,23 +26,24 @@ def rps_agents(n: int) -> List[callable]:
     return [lambda: gg_agent(n) for _ in range(n - 1)]
 
 
-gg = {
-    "constructor": guessing_game,
-    "agent": gg_agent
-}
+gg = {"constructor": guessing_game, "agent": gg_agent}
 
-rps = {
-    "constructor": rock_paper_scissors,
-    "agent": rps_agents
-}
+rps = {"constructor": rock_paper_scissors, "agent": rps_agents}
 
 
-def agent_(game_cfg: dict, num_moves: int) -> Tuple[Union[callable, dict], type, type, type]:
+def agent_(
+    game_cfg: dict, num_moves: int
+) -> Tuple[Union[callable, dict], type, type, type]:
     _agent = game_cfg["agent"]
     if isinstance(_agent(2), int):
         return _agent, int, float, bool
     # else: isinstance(_agent(2), list)
-    return lambda n: {f"agent{k}": _agent(num_moves)[k]() for k in range(num_moves - 1)}, dict, dict, dict
+    return (
+        lambda n: {f"agent{k}": _agent(num_moves)[k]() for k in range(num_moves - 1)},
+        dict,
+        dict,
+        dict,
+    )
 
 
 def meta_test_step_return(game_config: dict) -> callable:
@@ -54,7 +51,7 @@ def meta_test_step_return(game_config: dict) -> callable:
 
     @given(
         n=integers(min_value=2, max_value=25),
-        length=integers(min_value=10, max_value=2**20)
+        length=integers(min_value=10, max_value=2 ** 20),
     )
     def test_step_return(n: int, length: int):
         agent, obs_type, reward_type, done_type = agent_(game_config, n)
@@ -80,7 +77,7 @@ def meta_test_done(game_config: dict) -> callable:
 
     @given(
         n=integers(min_value=2, max_value=25),
-        length=integers(min_value=10, max_value=2**8)
+        length=integers(min_value=10, max_value=2 ** 8),
     )
     def test_done(n: int, length: int):
         game = constructor(n, length)
@@ -91,7 +88,9 @@ def meta_test_done(game_config: dict) -> callable:
             if isinstance(done, bool):
                 assert not done, f"Game finished prematurely at step {step}."
             else:  # isinstance(done, dict)
-                assert not all(done.values()), f"Game finished prematurely at step {step}."
+                assert not all(
+                    done.values()
+                ), f"Game finished prematurely at step {step}."
 
         _, _, done, _ = game.step(agent(n))
 
@@ -109,7 +108,7 @@ test_done_rps = meta_test_done(rps)
 
 @given(
     n=integers(min_value=2, max_value=1000),
-    length=integers(min_value=10, max_value=2**20)
+    length=integers(min_value=10, max_value=2 ** 20),
 )
 def test_obs_bounded_gg(n: int, length: int):
     game = guessing_game(n, length)

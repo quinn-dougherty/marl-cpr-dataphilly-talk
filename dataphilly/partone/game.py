@@ -26,5 +26,5 @@ class GuessingGame(gym.Env):
             self.observation_space.sample(),
             float(action == self.previous_obs),
             self.remaining_rounds <= 0,
-            {}
+            {},
         )

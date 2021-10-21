@@ -7,10 +7,11 @@ import gym  # type: ignore
 from gym.spaces import Discrete, Box  # type: ignore
 from ray.rllib.env import MultiAgentEnv
 
-class RockPaperScissors(MultiAgentEnv, gym.Env):
 
+class RockPaperScissors(MultiAgentEnv, gym.Env):
     class Item:
         """Atransitive comparators."""
+
         ALPHABET = list("abcdefghijklmnopqrstuvwxyz")
 
         def __init__(self, modulus: int, k: int):
@@ -30,7 +31,7 @@ class RockPaperScissors(MultiAgentEnv, gym.Env):
             other_letter = self.alphabet[other.k]
             other_letter_id = ord(other_letter) - 97
             if (self.letter_id + 1) % self.modulus == other_letter_id:
-                return - 1
+                return -1
             if (self.letter_id - 1) % self.modulus == other_letter_id:
                 return 1
             return 0
@@ -49,22 +50,23 @@ class RockPaperScissors(MultiAgentEnv, gym.Env):
 
     def reset(self) -> ndarray:
         self.remaining_rounds = self.length
-        return {f"player{k}": array([0] * self.num_agents) for k in range(self.num_agents)}
+        return {
+            f"player{k}": array([0] * self.num_agents) for k in range(self.num_agents)
+        }
 
     def step(
-            self,
-            actions_dict: Dict[str, int]
+        self, actions_dict: Dict[str, int]
     ) -> Tuple[Dict[str, ndarray], Dict[str, float], Dict[str, bool], dict]:
-        actions = OrderedDict((agent_id, self.items(k=k)) for agent_id, k in actions_dict.items())
+        actions = OrderedDict(
+            (agent_id, self.items(k=k)) for agent_id, k in actions_dict.items()
+        )
 
         rewards = {
             agent_id: sum(
                 actions[agent_id] << actions[other_agent_id]
-                for other_agent_id
-                in actions.keys()
+                for other_agent_id in actions.keys()
             )
-            for agent_id
-            in actions.keys()
+            for agent_id in actions.keys()
         }
 
         self.remaining_rounds -= 1
@@ -76,14 +78,10 @@ class RockPaperScissors(MultiAgentEnv, gym.Env):
         # each agents' observation is an array of the score it got in each position.
         # so other agents are ordered in a sense.
         observations = {
-            agent_id: array([actions[agent_id] << action for action in actions.values()])
-            for agent_id
-            in actions.keys()
+            agent_id: array(
+                [actions[agent_id] << action for action in actions.values()]
+            )
+            for agent_id in actions.keys()
         }
 
-        return (
-            observations,
-            rewards,
-            done,
-            {}
-        )
+        return (observations, rewards, done, {})
